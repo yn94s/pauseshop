@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>Pause Shop | Netflix</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>🎬 Pause Shop</h1>
+    <p>اشتراكات Netflix أصلية 100%</p>
+  </header>
+
+  <!-- OFFERS -->
+  <section class="cards">
+
+    <div class="card">
+      <h2>1 شهر</h2>
+      <p class="price">750 DA</p>
+    </div>
+
+    <div class="card popular">
+      <h2>2 شهر</h2>
+      <p class="price">1500 DA</p>
+      <span class="badge">الأكثر طلبًا</span>
+    </div>
+
+    <div class="card">
+      <h2>3 أشهر</h2>
+      <p class="price">2200 DA</p>
+    </div>
+
+  </section>
+
+  <!-- ORDER FORM -->
+  <section class="order">
+    <h2>📦 طلب اشتراك</h2>
+
+    <form action="https://formspree.io/f/mojvyzzl" method="POST">
+
+      <input type="text" name="name" placeholder="الاسم الكامل" required>
+
+      <input type="email" name="email" placeholder="الإيميل" required>
+
+      <input type="text" name="whatsapp" placeholder="رقم واتساب" required>
+
+      <select name="plan" required>
+        <option value="">اختر العرض</option>
+        <option>1 شهر - 750 DA</option>
+        <option>2 شهر - 1500 DA</option>
+        <option>3 أشهر - 2200 DA</option>
+      </select>
+
+      <button type="submit">إرسال الطلب</button>
+    </form>
+
+    <p class="note">
+      نحن نوفر وصول شخصي وليس حسابات للبيع
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>✔️ ضمان | ✔️ بدون مشاكل | ✔️ دعم سريع</p>
+  </footer>
+
+</body>
+</html>
