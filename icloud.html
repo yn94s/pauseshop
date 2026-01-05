@@ -1,1 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PauseShop - iCloud</title>
+<style>
+/* ====== CSS Dark + Orange ====== */
+* { box-sizing: border-box; }
+body { margin:0; font-family:'Poppins', sans-serif; background: linear-gradient(135deg, #0f172a, #1a1f2b); color:#fff; text-align:center; }
+header { padding:50px 20px; background: rgba(255,165,0,0.1); backdrop-filter: blur(10px); border-bottom-left-radius: 30px; border-bottom-right-radius:30px; }
+header h1 { font-size:3rem; color:#ff8c00; text-shadow:0 0 10px #ff8c00; margin-bottom:10px; }
+header p { opacity:0.8; }
+nav { display:flex; justify-content:center; gap:15px; margin-bottom:30px; flex-wrap:wrap;}
+nav a { color:#fff; text-decoration:none; padding:10px 15px; border-radius:8px; transition:0.3s; }
+nav a:hover { background:#ff8c00; color:#111; }
+.cards { display:flex; justify-content:center; gap:30px; flex-wrap:wrap; padding:20px; }
+.card { background:#111827; padding:20px; width:220px; border-radius:20px; box-shadow:0 10px 20px rgba(0,0,0,0.5); transition:0.3s; }
+.card:hover { transform:translateY(-10px); box-shadow:0 20px 40px rgba(0,0,0,0.6); }
+.card h2 { margin-bottom:10px; }
+select, button { padding:10px; border-radius:12px; border:none; outline:none; font-size:14px; margin-top:10px; width:100%; }
+select { background:rgba(255,255,255,0.05); color:#fff; }
+button { background:#ff8c00; color:#fff; font-weight:bold; cursor:pointer; transition:0.3s; }
+button:hover { background:#e07b00; }
+#cart { margin-top:40px; background:rgba(255,165,0,0.03); padding:20px; border-radius:20px; max-width:500px; margin-left:auto; margin-right:auto; backdrop-filter:blur(10px); text-align:left;}
+#cart h3 { margin-bottom:15px; color:#ff8c00; text-shadow:0 0 10px #ff8c00; text-align:center; }
+#cart ul { list-style:none; padding:0; margin:0; }
+#cart ul li { padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content: space-between; gap:10px; flex-wrap:wrap; }
+#cart-total { font-weight:bold; display:block; margin-top:10px; text-align:center; }
+input[type="email"] { background: rgba(255,255,255,0.05); color:#fff; width:100%; margin-top:10px; padding:10px; border-radius:12px; border:none; outline:none; }
+footer { padding:25px; font-size:14px; opacity:0.7; margin-top:50px; border-top:1px solid rgba(255,165,0,0.1); text-align:center;}
+@media screen and (max-width:768px){ .cards{ flex-direction:column; gap:20px; } header h1{ font-size:2.2rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>PauseShop</h1>
+  <p>Abonnements Premium - iCloud Storage</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="netflix.html">Netflix</a>
+  <a href="snap.html">Snap+</a>
+  <a href="prime.html">Prime Video</a>
+  <a href="tod.html">TOD TV</a>
+  <a href="icloud.html">iCloud</a>
+  <a href="music.html">Apple Music</a>
+</nav>
+
+<section class="cards">
+  <div class="card" data-name="iCloud" data-price="1000">
+    <h2>iCloud</h2>
+    <select class="duration">
+      <option value="1">1 mois - 1000 DA</option>
+      <option value="2">2 mois - 1800 DA</option>
+      <option value="3">3 mois - 2500 DA</option>
+    </select>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</section>
+
+<div id="cart">
+  <h3>Cart</h3>
+  <ul id="cart-items"></ul>
+  <p>Total: <span id="cart-total">0</span> DA</p>
+  <form id="order-form" action="https://formspree.io/f/mojvyzzl" method="POST">
+    <input type="hidden" name="order-details" id="order-details">
+    <input type="email" name="email" placeholder="Your email" required>
+    <button type="submit">Place Order</button>
+  </form>
+</div>
+
+<footer>
+  &copy; 2026 PauseShop | Tous droits réservés
+</footer>
+
+<script>
+// ======= JS Cart System Editable =======
+const cart = [];
+const cartItems = document.getElementById('cart-items');
+const cartTotal = document.getElementById('cart-total');
+const orderDetails = document.getElementById('order-details');
+
+function updateCart() {
+  cartItems.innerHTML = '';
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    const li = document.createElement('li');
+    
+    // Name
+    const nameSpan = document.createElement('span');
+    nameSpan.textContent = item.name + ' - ';
+    li.appendChild(nameSpan);
+
+    // Duration select
+    const durationSelect = document.createElement('select');
+    for(let i=1; i<=3; i++){
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = `${i} mois - ${item.price * i} DA`;
+      if(i===item.duration) opt.selected = true;
+      durationSelect.appendChild(opt);
+    }
+    durationSelect.addEventListener('change', (e)=>{
+      item.duration = parseInt(e.target.value);
+      updateCart();
+    });
+    li.appendChild(durationSelect);
+
+    // Remove button
+    const removeBtn = document.createElement('button');
+    removeBtn.textContent = 'Remove';
+    removeBtn.style.background = '#ff4d00';
+    removeBtn.style.color = '#fff';
+    removeBtn.style.border = 'none';
+    removeBtn.style.borderRadius = '6px';
+    removeBtn.style.cursor = 'pointer';
+    removeBtn.addEventListener('click', ()=>{
+      cart.splice(index,1);
+      updateCart();
+    });
+    li.appendChild(removeBtn);
+
+    cartItems.appendChild(li);
+
+    total += item.price * item.duration;
+  });
+
+  cartTotal.textContent = total;
+  orderDetails.value = cart.map(i => `${i.name} ${i.duration} mois`).join(', ');
+}
+
+// Add to cart
+document.querySelectorAll('.add-to-cart').forEach(btn => {
+  btn.addEventListener('click', ()=>{
+    const card = btn.parentElement;
+    const name = card.dataset.name;
+    const price = parseInt(card.dataset.price);
+    const duration = parseInt(card.querySelector('.duration').value);
+    cart.push({name, price, duration});
+    updateCart();
+  });
+});
+</script>
+
+</body>
+</html>
 
