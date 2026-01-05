@@ -1,70 +1,144 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Pause Shop | Netflix</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PauseShop - Abonnements</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ====== CSS Dark + Orange ====== */
+* { box-sizing: border-box; }
+body { margin:0; font-family:'Poppins', sans-serif; background: linear-gradient(135deg, #0f172a, #1a1f2b); color:#fff; text-align:center; }
+header { padding:50px 20px; background: rgba(255,165,0,0.1); backdrop-filter: blur(10px); border-bottom-left-radius: 30px; border-bottom-right-radius:30px; }
+header h1 { font-size:3rem; color:#ff8c00; text-shadow:0 0 10px #ff8c00; margin-bottom:10px; }
+header p { opacity:0.8; }
+nav { display:flex; justify-content:center; gap:15px; margin-bottom:30px; flex-wrap:wrap;}
+nav a { color:#fff; text-decoration:none; padding:10px 15px; border-radius:8px; transition:0.3s; }
+nav a:hover { background:#ff8c00; color:#111; }
+.cards { display:flex; justify-content:center; gap:30px; flex-wrap:wrap; padding:20px; }
+.card { background:#111827; padding:20px; width:220px; border-radius:20px; box-shadow:0 10px 20px rgba(0,0,0,0.5); transition:0.3s; }
+.card:hover { transform:translateY(-10px); box-shadow:0 20px 40px rgba(0,0,0,0.6); }
+.card h2 { margin-bottom:10px; }
+select, button { padding:10px; border-radius:12px; border:none; outline:none; font-size:14px; margin-top:10px; width:100%; }
+select { background:rgba(255,255,255,0.05); color:#fff; }
+button { background:#ff8c00; color:#fff; font-weight:bold; cursor:pointer; transition:0.3s; }
+button:hover { background:#e07b00; }
+#cart { margin-top:40px; background:rgba(255,165,0,0.03); padding:20px; border-radius:20px; max-width:500px; margin-left:auto; margin-right:auto; backdrop-filter:blur(10px);}
+#cart h3 { margin-bottom:15px; color:#ff8c00; text-shadow:0 0 10px #ff8c00; }
+#cart ul { list-style:none; padding:0; margin:0; text-align:left;}
+#cart ul li { padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.2);}
+#cart-total { font-weight:bold; }
+input[type="email"] { background: rgba(255,255,255,0.05); color:#fff; width:100%; margin-top:10px; }
+footer { padding:25px; font-size:14px; opacity:0.7; margin-top:50px; border-top:1px solid rgba(255,165,0,0.1);}
+@media screen and (max-width:768px){ .cards{ flex-direction:column; gap:20px; } header h1{ font-size:2.2rem; } }
+</style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <h1>🎬 Pause Shop</h1>
-    <p>اشتراكات Netflix أصلية 100%</p>
-  </header>
+<header>
+  <h1>PauseShop</h1>
+  <p>Abonnements Premium - Netflix, Snap+, Prime, TOD TV, iCloud, Apple Music</p>
+</header>
 
-  <!-- OFFERS -->
-  <section class="cards">
+<nav>
+  <a href="index.html">Home</a>
+  <a href="netflix.html">Netflix</a>
+  <a href="snap.html">Snap+</a>
+  <a href="prime.html">Prime Video</a>
+  <a href="tod.html">TOD TV</a>
+  <a href="icloud.html">iCloud</a>
+  <a href="music.html">Apple Music</a>
+</nav>
 
-    <div class="card">
-      <h2>1 شهر</h2>
-      <p class="price">750 DA</p>
-    </div>
+<section class="cards">
+  <div class="card" data-name="Netflix" data-price="1500">
+    <h2>Netflix</h2>
+    <select class="duration">
+      <option value="1">1 mois - 1500 DA</option>
+      <option value="2">2 mois - 2200 DA</option>
+      <option value="3">3 mois - 3000 DA</option>
+    </select>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
 
-    <div class="card popular">
-      <h2>2 شهر</h2>
-      <p class="price">1500 DA</p>
-      <span class="badge">الأكثر طلبًا</span>
-    </div>
+  <div class="card" data-name="Snap+" data-price="1000">
+    <h2>Snap+</h2>
+    <select class="duration">
+      <option value="1">1 mois - 1000 DA</option>
+      <option value="2">2 mois - 1800 DA</option>
+      <option value="3">3 mois - 2500 DA</option>
+    </select>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
 
-    <div class="card">
-      <h2>3 أشهر</h2>
-      <p class="price">2200 DA</p>
-    </div>
+  <div class="card" data-name="Prime Video" data-price="1300">
+    <h2>Prime Video</h2>
+    <select class="duration">
+      <option value="1">1 mois - 1300 DA</option>
+      <option value="2">2 mois - 2400 DA</option>
+      <option value="3">3 mois - 3200 DA</option>
+    </select>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
 
-  </section>
+  <div class="card" data-name="TOD TV" data-price="1200">
+    <h2>TOD TV</h2>
+    <select class="duration">
+      <option value="1">1 mois - 1200 DA</option>
+      <option value="2">2 mois - 2100 DA</option>
+      <option value="3">3 mois - 3000 DA</option>
+    </select>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</section>
 
-  <!-- ORDER FORM -->
-  <section class="order">
-    <h2>📦 طلب اشتراك</h2>
+<div id="cart">
+  <h3>Cart</h3>
+  <ul id="cart-items"></ul>
+  <p>Total: <span id="cart-total">0</span> DA</p>
+  <form id="order-form" action="https://formspree.io/f/mojvyzzl" method="POST">
+    <input type="hidden" name="order-details" id="order-details">
+    <input type="email" name="email" placeholder="Your email" required>
+    <button type="submit">Place Order</button>
+  </form>
+</div>
 
-    <form action="https://formspree.io/f/mojvyzzl" method="POST">
+<footer>
+  &copy; 2026 PauseShop | Tous droits réservés
+</footer>
 
-      <input type="text" name="name" placeholder="الاسم الكامل" required>
+<script>
+// ====== JS Cart System ======
+const cart = [];
+const cartItems = document.getElementById('cart-items');
+const cartTotal = document.getElementById('cart-total');
+const orderForm = document.getElementById('order-form');
+const orderDetails = document.getElementById('order-details');
 
-      <input type="email" name="email" placeholder="الإيميل" required>
+function updateCart() {
+  cartItems.innerHTML = '';
+  let total = 0;
+  cart.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = `${item.name} - ${item.duration} mois - ${item.price * item.duration} DA`;
+    cartItems.appendChild(li);
+    total += item.price * item.duration;
+  });
+  cartTotal.textContent = total;
+  orderDetails.value = cart.map(i => `${i.name} ${i.duration} mois`).join(', ');
+}
 
-      <input type="text" name="whatsapp" placeholder="رقم واتساب" required>
-
-      <select name="plan" required>
-        <option value="">اختر العرض</option>
-        <option>1 شهر - 750 DA</option>
-        <option>2 شهر - 1500 DA</option>
-        <option>3 أشهر - 2200 DA</option>
-      </select>
-
-      <button type="submit">إرسال الطلب</button>
-    </form>
-
-    <p class="note">
-      نحن نوفر وصول شخصي وليس حسابات للبيع
-    </p>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>✔️ ضمان | ✔️ بدون مشاكل | ✔️ دعم سريع</p>
-  </footer>
+document.querySelectorAll('.add-to-cart').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.parentElement;
+    const name = card.dataset.name;
+    const price = parseInt(card.dataset.price);
+    const duration = parseInt(card.querySelector('.duration').value);
+    cart.push({name, price, duration});
+    updateCart();
+  });
+});
+</script>
 
 </body>
 </html>
